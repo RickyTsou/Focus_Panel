@@ -1,0 +1,121 @@
+/* styles.css */
+:root {
+    --grid-unit-size: 240px; /* 您的設定 */
+    --grid-gap: 15px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    margin: 0;
+    /* 設定墨綠色背景 */
+    background-color: #283c32; /* 柔和的墨綠色，您可以替換成您更喜歡的墨綠色調，例如 #1E392A 或 #2F4F4F */
+
+    color: #e0e0e0; /* 主要文字顏色改為淺灰色，確保在深色背景上的可讀性 */
+    line-height: 1.6;
+    font-size: 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    padding: 20px 0;
+    position: relative;
+    overflow-x: hidden;
+}
+
+h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #ffffff; /* 標題改為純白色 */
+}
+
+p {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #c5c5c5; /* 段落文字使用稍暗的淺灰色 */
+    font-size: 16px;
+    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); */ /* 副標題陰影也可以微調或移除 */
+}
+
+.grid-wrapper {
+    box-sizing: border-box;
+    max-width: 1600px;
+    width: calc(100% - 40px);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, var(--grid-unit-size)); /* 您的設定 */
+    grid-auto-rows: var(--grid-unit-size);
+    gap: var(--grid-gap);
+    padding: var(--grid-gap);
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+}
+
+.grid-item {
+    background: rgba(255, 255, 255, 0.08); /* 在深色背景下，玻璃的透明度可以略微調低一點，讓其"亮"起來 */
+    backdrop-filter: blur(12px) saturate(150%); /* 模糊度可以略微增加 */
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    color: #ffffff; /* 玻璃元件上的文字保持白色 */
+    text-align: center;
+    text-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.15); /* 邊框透明度也可以微調 */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* 添加背景色過渡 */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* 陰影在深色背景下可以更明顯一點 */
+}
+
+/* .grid-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    background: rgba(255, 255, 255, 0.12);
+} */
+
+
+/* 特定尺寸的 grid-item 只保留佈局，外觀繼承 .grid-item */
+.item-1x1 { grid-column: span 1; grid-row: span 1; }
+.item-1x2 { grid-column: span 1; grid-row: span 2; }
+.item-2x1 { grid-column: span 2; grid-row: span 1; }
+.item-2x2 { grid-column: span 2; grid-row: span 2; }
+.item-3x1 { grid-column: span 3; grid-row: span 1; }
+
+/* --- 媒體查詢 (基於您的斷點) --- */
+@media (max-width: 800px) { /* 您的斷點 */
+    :root { --grid-unit-size: 180px; }
+    .grid-item { font-size: 13px; }
+    h1 { font-size: 28px; }
+    p { font-size: 15px; }
+}
+
+@media (max-width: 600px) { /* 您的斷點 */
+    :root { --grid-unit-size: 120px; --grid-gap: 8px; }
+    .grid-item {
+        font-size: 12px;
+        backdrop-filter: blur(8px) saturate(150%);
+        -webkit-backdrop-filter: blur(8px) saturate(150%);
+    }
+    .item-3x1 { grid-column: span 2; } /* 您的設定 */
+    .grid-wrapper { padding: 15px; width: calc(100% - 30px); }
+    h1 { font-size: 26px; margin-bottom: 15px;}
+    p { font-size: 14px; margin-bottom: 20px;}
+    body { padding: 15px 0; }
+}

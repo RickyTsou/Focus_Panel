@@ -1,0 +1,184 @@
+.audio-player-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    padding: 15px 10px; 
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.audio-player-container {
+    width: 100%;
+    max-width: 320px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+/* 歌曲名稱跑馬燈效果 */
+.track-info-marquee {
+    width: 95%;
+    overflow: hidden; 
+    white-space: nowrap; 
+    box-sizing: border-box;
+    background-color: rgba(0,0,0,0);
+    border-radius: 4px;
+    margin-bottom: 15px; /* 加大與進度條的間距 */
+    padding: 0 5px; 
+}
+
+.track-name-text {
+    display: inline-block; 
+    padding: 8px 0; 
+    font-weight: bold;
+    color: #fff;
+    font-size: 16px; /* 較小的字體 */
+    /* animation-name, duration 等將由 JS 設定 */
+    /* 確保初始 transform，以便 JS 計算 */
+    transform: translateX(0); 
+    will-change: transform; /* 提示瀏覽器此屬性會變動 */
+}
+
+/* 這個 class 由 JS 動態添加/移除 */
+.marquee-active {
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    /* animation-name 和 animation-duration 會由 JS 設定 */
+}
+
+.progress-bar-container {
+    width: 95%;
+    height: 10px; /* 稍微加高一點，方便點擊和拖動 */
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px; /* 配合高度調整 */
+    cursor: pointer;
+    /* margin-bottom: 15px; */ /* 移除原來的 margin-bottom，改由 time-display-container 控制 */
+    overflow: hidden;
+    position: relative; /* 為了拖動時的計算或添加拖動塊的定位 (如果需要) */ 
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #dbf8ff;
+    border-radius: 5px;
+    transition: width 0.05s linear; /* 讓進度更新更即時，但仍有一點平滑 */
+    pointer-events: none; /* 確保點擊事件由父容器處理 */
+}
+
+/* 新增時間顯示樣式 */
+.time-display-container {
+    width: 95%; /* 與進度條寬度一致 */
+    display: flex;
+    justify-content: space-between; /* 將子元素推向兩端 */
+    margin-top: 6px; /* 與進度條的間距 */
+    margin-bottom: 15px; /* 加大與主要控制按鈕的間距 */
+    padding: 0 2px; /* 微調，避免文字太貼近邊緣 */
+    box-sizing: border-box;
+}
+
+.time-text {
+    font-size: 0.75em; /* 較小的字體 */
+    color: #ccc; /* 淺灰色文字 */
+    font-family: 'monospace', 'Courier New', Courier; /* 等寬字體 */
+}
+
+
+.controls-main { 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    margin-bottom: 12px; /* 加大與音量控制的間距 */
+}
+
+
+.controls-volume { 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    width: 85%; 
+    gap: 10px; 
+}
+
+.ap-btn {
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff; 
+    padding: 8px; 
+    border-radius: 50%; 
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    width: 40px; 
+    height: 40px; 
+    flex-shrink: 0; 
+}
+
+.ap-btn:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.ap-btn.active {
+    background-color: rgba(100, 200, 100, 0.4);
+    border-color: rgba(100, 200, 100, 0.6);
+    color: #e0ffe0; 
+}
+
+.ap-btn.volume-btn { 
+    width: 36px;
+    height: 36px;
+    padding: 6px;
+}
+
+
+.volume-slider {
+    flex-grow: 1; 
+    height: 8px; /* 配合進度條高度 */
+    -webkit-appearance: none; 
+    appearance: none; 
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px; /* 配合高度調整 */
+    outline: none;
+    cursor: pointer;
+}
+
+.volume-slider::-webkit-slider-runnable-track {
+    height: 8px;
+    background: rgba(0, 0, 0, 0.2); 
+    border-radius: 4px;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px; /* 稍微加大 */
+    height: 16px; /* 稍微加大 */
+    background: #b0e0e6; 
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -4px; 
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.volume-slider::-moz-range-track {
+    height: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    border: none; 
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #b0e0e6;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.3);
+}

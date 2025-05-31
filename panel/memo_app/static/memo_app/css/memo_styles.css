@@ -1,0 +1,24 @@
+
+textarea#memoInput {
+    width: 90%;
+    height: 92%;
+    border: none; /* 移除邊框，因為父級 .grid-item 有邊框 */
+    background-color: transparent; /* 完全透明，依賴父級 .grid-item 的玻璃效果 */
+
+    color: #fff;
+    font-family: inherit;
+    font-size: 16px;
+    padding: 4px;
+    box-sizing: border-box;
+    resize: none; /* 禁止調整大小 */
+    outline: none; /* 移除選中時的外框 */
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.05); /* 捲動條鈕顏色 軌道顏色 */
+}
+
+textarea#memoInput::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* 較亮的白色，但仍帶透明度 */
+    opacity: 1; /* 確保在某些瀏覽器中 placeholder 不是半透明的 */
+    font-style: italic; /* 可選：讓 placeholder 樣式更突出 */
+}

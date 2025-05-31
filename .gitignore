@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+
+# Django
+db.sqlite3
+*.log
+*/local_settings.py
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+# 如果您使用其他常見名稱，也請加入
+
+# OS / IDE specific
+.DS_Store
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.vscode/
+
+# Media files in my_music (保留目錄，忽略內容)
+my_music/*
+!my_music/.gitkeep # 可選：如果您希望提交空的 my_music 目錄
+
+# 其他產生的檔案或敏感資料
+# 加入任何其他特定於您的設定且不應版本控制的檔案

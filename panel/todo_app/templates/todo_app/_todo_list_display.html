@@ -1,0 +1,8 @@
+<div id="todoSlotsContainer" class="todo-slots-container">
+    {% for i in "12345678" %}
+    <div class="todo-slot" data-slot-index="{{ forloop.counter0 }}">
+        <input type="text" class="todo-text-input" placeholder="todo..." maxlength="15">
+        <button class="todo-complete-btn" aria-label="標記完成">✓</button>
+    </div>
+    {% endfor %}
+</div>

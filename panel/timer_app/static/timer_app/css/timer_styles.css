@@ -1,0 +1,41 @@
+/* panel/timer_app/static/timer_app/css/timer_styles.css */
+.timer-app-container { /* 這個 class 將加在 panel.html 中的 grid-item 上 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px; /* 給內部元素一些空間 */
+}
+
+.timer-display {
+    font-size: 2.5em; /* 讓時間數字大一點 */
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    font-family: 'monospace', 'Courier New', Courier; /* 等寬字體，讓數字跳動時寬度一致 */
+}
+
+.timer-controls {
+    display: flex;
+    gap: 10px; /* 按鈕之間的間距 */
+}
+
+.timer-btn {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.timer-btn:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.timer-btn:active {
+    transform: scale(0.95);
+}

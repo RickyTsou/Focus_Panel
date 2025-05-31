@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animations.css' %}">
+    <link rel="stylesheet" href="{% static 'memo_app/css/memo_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'timer_app/css/timer_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'todo_app/css/todo_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'audio_player_app/css/audio_player_styles.css' %}"> </head>
+
+</head>
+<body>
+    <div class="grid-wrapper">
+        <div class="grid-container">
+            <div class="grid-item item-1x1">
+                {% include 'timer_app/_timer_display.html' %}
+            </div>
+            <div class="grid-item item-1x2 todo-app-container">
+                {% include 'todo_app/_todo_list_display.html' %}
+            </div>
+            <div class="grid-item item-2x2 memo-app">
+                {% include 'memo_app/_memo_input_partial.html' %}
+            </div>
+            <div class="grid-item item-1x1 audio-player-app">
+                {% include 'audio_player_app/_audio_player_partial.html' %}
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        const CSRF_TOKEN = "{{ csrf_token }}";
+    </script>
+    <script src="{% static 'memo_app/js/memo_handler.js' %}"></script>
+    <script src="{% static 'timer_app/js/timer_logic.js' %}"></script>
+    <script src="{% static 'todo_app/js/todo_logic.js' %}"></script>
+    <script src="{% static 'audio_player_app/js/audio_player_logic.js' %}"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化備忘錄應用
+            const memoTextareaId = 'memoInput';
+            const getMemoUrl = "{% url 'memo_app:get_memo_api' %}";
+            const saveMemoUrl = "{% url 'memo_app:save_memo_api' %}";
+            initializeMemoApp(memoTextareaId, getMemoUrl, saveMemoUrl); // CSRF token 在 memo_handler.js 中使用全局 CSRF_TOKEN
+
+            // 初始化計時器應用
+            initializeTimerApp({
+                hours: 'timerHours',
+                minutes: 'timerMinutes',
+                seconds: 'timerSeconds',
+                startBtn: 'timerStartBtn',
+                stopBtn: 'timerStopBtn',
+                resetBtn: 'timerResetBtn'
+            });
+
+
+            const getTodoSlotsUrl = "{% url 'todo_app:get_todo_slots_api' %}";
+            const saveTodoSlotsUrl = "{% url 'todo_app:save_todo_slots_api' %}";
+
+            initializeTodoApp(
+                { // 傳遞 DOM 元素的 ID
+                    slotsContainer: 'todoSlotsContainer'
+                },
+                { // 傳遞 API URLs
+                    getSlotsUrl: "{% url 'todo_app:get_todo_slots_api' %}",
+                    saveSlotsUrl: "{% url 'todo_app:save_todo_slots_api' %}"
+                }
+            );
+
+
+            initializeAudioPlayer({
+                playerContainerId: 'audioPlayer', // 對應 _audio_player_partial.html 中的 ID
+                listFilesUrl: "{% url 'audio_player_app:list_files_api' %}",
+                audioFileBaseUrl: "{% get_static_prefix %}" // 這會得到 "/static/"。檔名將附加在後面。
+                                                            // 因此，請確保您的 mp3 檔案直接位於
+                                                            // AUDIO_PLAYER_MUSIC_DIR 所指向的資料夾中。
+                                                            // 如果 song.mp3 在 my_music/ 中，則 URL 為 /static/song.mp3
+            });
+        });
+    </script>
+</body>
+</html>
