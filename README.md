@@ -1,6 +1,6 @@
 # Focus_Panel
 
-這是一個測試與 AI 協作的項目，大部分的程式碼都由 Gemini 2.5 Pro 撰寫。說明文章。
+這是一個測試與 AI 協作的項目，大部分的程式碼都由 Gemini 2.5 Pro 撰寫。[說明文章](https://medium.com/@ricky42312/%E5%BE%9E%E6%83%B3%E6%B3%95%E5%88%B0%E7%8F%BE%E5%AF%A6%E7%9A%84%E8%B7%9D%E9%9B%A2-54253359ad2f)
 
 Focus_Panel 是一個使用 Django 和 pywebview 技術打造的桌面資訊面板應用程式。它將多個小工具整合在一個可自訂的網格佈局中，旨在提供一個集中化、美觀且實用的資訊中心。應用程式包含備忘錄、計時器、待辦事項列表和本地音樂播放器等功能，並具有動態的背景動畫效果。
 
@@ -25,7 +25,7 @@ Focus_Panel 是一個使用 Django 和 pywebview 技術打造的桌面資訊面�
 1.  **複製儲存庫**：
     如果您是從 Git 儲存庫取得此專案 (例如 GitHub)，請先複製 (clone) 儲存庫：
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/Focus_Panel.git](https://github.com/YOUR_USERNAME/Focus_Panel.git)
+    git clone https://github.com/RickyTsou/Focus_Panel.git
     cd Focus_Panel
     ```
     若您是直接下載的原始碼，請解壓縮並進入專案的根目錄 (即包含此 `README.md` 檔案的目錄)。
